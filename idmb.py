@@ -27,12 +27,6 @@ def idmb(agent_task_input):
         cost_list = {x: agent_task_input[x][task] for x in unallocated_agents}
         minimum = min(cost_list.items(), key=lambda x: x[1])
         allocated_task[minimum[0]] = (task, minimum[1])
-
-        # for agent in allocated_task:
-        #     if should_swap_tasks(minimum[0], agent, allocated_task):
-        #         print("swapping", minimum[0], agent)
-        #         swap_task(minimum[0], agent, allocated_task)
-
         unallocated_agents.remove(minimum[0])  # removing the agents as it has been allocated
 
     for agent in allocated_task:
@@ -41,8 +35,6 @@ def idmb(agent_task_input):
         for other_agent in other_agents_task:
             if should_swap_tasks(agent, other_agent, allocated_task, agent_task_input):
                 swap_task(agent, other_agent, allocated_task, agent_task_input)
-
-    # print(allocated_task)
 
     total_cost = sum(v for (name, v) in allocated_task.values())
 

@@ -6,8 +6,6 @@ def dmb(agent_task_input):
     unallocated_task = list(agent_task_input[list(agent_task_input.keys())[0]].keys())
     unallocated_agents = list(agent_task_input.keys())
     allocated_task = {}  # {"A", (#192, 1)
-    # print(unallocated_task)
-    # print(unallocated_agents)
     total_cost = 0
     for task in unallocated_task:
         cost_list = {x: agent_task_input[x][task] for x in unallocated_agents}
@@ -15,9 +13,6 @@ def dmb(agent_task_input):
         total_cost = total_cost + minimum[1]
         allocated_task[minimum[0]] = (task, minimum[1])
         unallocated_agents.remove(minimum[0])  # removing the agents as it has been allocated
-
-    # print(allocated_task)
-    # print(total_cost)
 
     return total_cost
 

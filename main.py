@@ -4,8 +4,6 @@ from idmb import idmb
 from hungarian import hungarian
 import matplotlib.pyplot as plt
 
-# from hungarian_algorithm import Hungarian
-
 if __name__ == '__main__':
     input_count = [3, 5, 8, 10, 13, 15, 18, 20, 22, 25]
     dmb_result = {}
@@ -29,8 +27,7 @@ if __name__ == '__main__':
         print("Hungarian", hungarian_cost)
         hungarian_result[count] = hungarian_cost
 
-    print(dmb_result)
-    print(hungarian_result)
+    # generating plots
     colors = ['orange', 'red', 'blue']
     plt.rcParams.update({'font.size': 14})
     plt.plot(list(dmb_result.keys()), list(dmb_result.values()), colors[0], label='DMB')
@@ -42,6 +39,7 @@ if __name__ == '__main__':
     plt.ylabel("Cost")
     plt.show()
 
+    # generating error plots
     dmb_error = {x: (dmb_result[x] - hungarian_result[x]) / hungarian_result[x] * 100 for x in hungarian_result.keys()}
     idmb_error = {x: (idmb_result[x] - hungarian_result[x]) / hungarian_result[x] * 100 for x in
                   hungarian_result.keys()}
